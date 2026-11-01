@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.21)
+project(my_project VERSION 0.1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
+
+option(MY_PROJECT_BUILD_EXAMPLES "Build example programs" OFF)
+include(CTest)
+
+function(my_project_enable_warnings target)
+    if(MSVC)
+        target_compile_options(${target} PRIVATE /W4 /permissive-)
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+endfunction()
+
+add_subdirectory(src)
+add_subdirectory(app)
+if(BUILD_TESTING)
+    add_subdirectory(test)
+endif()
+if(MY_PROJECT_BUILD_EXAMPLES)
+    add_subdirectory(example)
+endif()

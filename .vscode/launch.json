@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug my_project_app (GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "setupCommands": [
+                {
+                    "description": "Enable GDB pretty-printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "program": "${workspaceFolder}/build/debug/app/my_project_app",
+            "windows": {
+                "program": "${workspaceFolder}/build/debug/app/my_project_app.exe"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "CMake: build debug"
+        }
+    ]
+}

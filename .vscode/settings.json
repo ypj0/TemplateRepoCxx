@@ -1,0 +1,24 @@
+{
+    "cmake.useCMakePresets": "always",
+    "cmake.configureOnOpen": true,
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--header-insertion=iwyu"
+    ],
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.formatOnSave": true
+    },
+    "files.associations": {
+        "*.hpp": "cpp",
+        ".clangd": "yaml",
+        ".clang-format": "yaml",
+        ".clang-tidy": "yaml"
+    },
+    "files.watcherExclude": {
+        "**/build/**": true
+    }
+}
